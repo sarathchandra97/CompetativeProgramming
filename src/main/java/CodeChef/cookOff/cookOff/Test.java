@@ -9,6 +9,6 @@ class Test
 {
     public static void main (String[] args) throws java.lang.Exception
     {
-        // your code goes here
+        System.out.println("Hello there i am Awesome Right");
     }
 }
