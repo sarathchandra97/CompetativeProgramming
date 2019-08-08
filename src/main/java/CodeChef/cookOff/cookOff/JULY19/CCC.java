@@ -95,11 +95,37 @@ public class CCC {
                 a[i] = scan.nextInt();
             }
             Arrays.sort(a);
-            System.out.println(Math.min(a[0]*n,a[n-1]));
+
+            int minsum = 0;
+            for (int i = n-z; i < n; i++) {
+                minsum += a[i];
+            }
+            // index will be on the first one of the window of the array
+            int index = n-z;
+            int minhit = a[z-1];
+            while (index > 0 && minsum > minsum + ifIGiveTheHighest(index, a, minhit, z)){
+                // should a shift or stay where i am
+                // like a sliding window
+                minsum  += ifIGiveTheHighest(index, a, minhit,z);
+                index--;
+
+            }
+            System.out.println(minsum);
+
 
         }
     }
+
+    private static int ifIGiveTheHighest(int index, int[] a, int minhit,int z) {
+
+        // index will never be 0 so there is no concept of underflow
+        // index leave the highest one i have to make the minimum number of hit i have to make is a[z-1]
+        // if the choose the next best one a[index-1] // 1 minus the start of the array
+        return minhit + a[index-1] - a[index+z-1];
+    }
+
     void impl1(){
+        // why it is wrong
         Scanner scan = new Scanner(System.in);
         int total_test_cases = scan.nextInt();
         for (int test_case = 0; test_case < total_test_cases; test_case++) {
